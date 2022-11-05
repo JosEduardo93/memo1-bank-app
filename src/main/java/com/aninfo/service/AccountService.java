@@ -32,7 +32,7 @@ public class AccountService {
     public void save(Account account) {
         accountRepository.save(account);
     }
-
+    
     public void deleteById(Long cbu) {
         accountRepository.deleteById(cbu);
     }
@@ -44,10 +44,9 @@ public class AccountService {
         if (account.getBalance() < sum) {
             throw new InsufficientFundsException("Insufficient funds");
         }
-
         account.setBalance(account.getBalance() - sum);
+        account.setWithdraw();
         accountRepository.save(account);
-        account.setOperation("withdraw", sum);
         return account;
     }
 
@@ -64,10 +63,10 @@ public class AccountService {
         }
 
         Account account = accountRepository.findAccountByCbu(cbu);
+        account.setDeposit();
         account.setBalance(account.getBalance() + sum);
         accountRepository.save(account);
-        account.setOperation("deposit", sum);
         return account;
     }
-    
+
 }
