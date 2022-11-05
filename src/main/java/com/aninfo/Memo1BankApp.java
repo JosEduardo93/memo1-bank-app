@@ -75,6 +75,14 @@ public class Memo1BankApp {
 		return accountService.deposit(cbu, sum);
 	}
 
+	@PutMapping("accounts/{cbu}/history")
+	public void history(@PathVariable Long cbu) {
+		Optional<Account> accountOptional = accountService.findById(cbu);
+		if (!accountOptional.isPresent()) {
+			ResponseEntity.notFound().build();			
+		}
+	}
+
 	@Bean
 	public Docket apiDocket() {
 		return new Docket(DocumentationType.SWAGGER_2)

@@ -3,7 +3,6 @@ package com.aninfo.service;
 import com.aninfo.exceptions.DepositNegativeSumException;
 import com.aninfo.exceptions.InsufficientFundsException;
 import com.aninfo.model.Account;
-import com.aninfo.model.TransactionOperation;
 import com.aninfo.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

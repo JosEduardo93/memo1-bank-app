@@ -3,7 +3,6 @@ package com.aninfo.model;
 import java.util.Vector;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Account {
