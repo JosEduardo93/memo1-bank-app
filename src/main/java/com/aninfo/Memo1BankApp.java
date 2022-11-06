@@ -3,6 +3,8 @@ package com.aninfo;
 import com.aninfo.model.Account;
 import com.aninfo.model.TransactionOperation;
 import com.aninfo.service.AccountService;
+import com.aninfo.service.TransactionService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +30,9 @@ public class Memo1BankApp {
 
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private TransactionService transactionService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Memo1BankApp.class, args);
@@ -77,13 +82,14 @@ public class Memo1BankApp {
 		return accountService.deposit(cbu, sum);
 	}
 
+	@GetMapping("/accounts/history")
+	public Collection<TransactionOperation> getHistory() {
+		return transactionService.getHistory();
+	}
+
 	@PutMapping("/accounts/{cbu}/history")
-	public Collection<TransactionOperation> history(@PathVariable Long cbu) {
-		Optional<Account> accountOptional = accountService.findById(cbu);
-		if (!accountOptional.isPresent()) {
-			ResponseEntity.notFound().build();			
-		}
-		return null;
+	public Collection<TransactionOperation> getHistory(@PathVariable("cbu") Long cbu) {
+		return transactionService.getHistory(cbu);
 	}
 
 	@Bean

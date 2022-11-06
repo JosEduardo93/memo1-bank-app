@@ -2,17 +2,29 @@ package com.aninfo.model;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "Transaction")
 public class TransactionOperation {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long numOperation;
     
     private String operationName;
     
     private double mountOperation;
+    
+    @Column(name = "cbu")
+    private Long cbu;
 
-    public TransactionOperation() {
+    public TransactionOperation(){
+    }
+
+    public TransactionOperation(String name, Long cbu, Long id, double mount) {
+        this.operationName = name;
+        this.cbu = cbu;
+        this.numOperation = id;
+        this.mountOperation = mount;
     }
 
     public void setNameOperation(String name) {
@@ -34,7 +46,15 @@ public class TransactionOperation {
         return this.numOperation;
     }   
 
-    public double setMount() {
+    public double getMount() {
         return this.mountOperation;
+    }
+
+    public void setCbu(Long cbu) {
+        this.cbu = cbu;
+    }
+
+    public Long getCbu() {
+        return this.cbu;
     }
 }
