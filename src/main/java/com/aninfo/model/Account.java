@@ -1,7 +1,5 @@
 package com.aninfo.model;
 
-import java.util.Vector;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,8 +10,6 @@ public class Account {
     private Long cbu;
 
     private Double balance;
-
-    private Vector<TransactionOperation> history;
 
     public Account(){
     }
@@ -36,18 +32,6 @@ public class Account {
 
     public void setBalance(Double balance) {
         this.balance = balance;
-    }
-
-    public void setOperation(String name, double mount) {
-        this.history.add(new TransactionOperation(name, this.history.size() + 1, mount));
-    }
-
-    public void deleteOperation(int numOperation) {
-        this.history.remove(numOperation - 1);
-    }
-
-    public TransactionOperation getOperation(int numOperation) {
-        return this.history.elementAt(numOperation - 1);
     }
 
 }

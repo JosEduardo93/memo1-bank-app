@@ -47,7 +47,6 @@ public class AccountService {
 
         account.setBalance(account.getBalance() - sum);
         accountRepository.save(account);
-        account.setOperation("withdraw", sum);
         return account;
     }
 
@@ -66,7 +65,6 @@ public class AccountService {
         Account account = accountRepository.findAccountByCbu(cbu);
         account.setBalance(account.getBalance() + sum);
         accountRepository.save(account);
-        account.setOperation("deposit", sum);
         return account;
     }
     
