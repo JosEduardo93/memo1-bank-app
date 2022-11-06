@@ -1,6 +1,7 @@
 package com.aninfo;
 
 import com.aninfo.model.Account;
+import com.aninfo.model.TransactionOperation;
 import com.aninfo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Optional;
+
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -75,12 +77,13 @@ public class Memo1BankApp {
 		return accountService.deposit(cbu, sum);
 	}
 
-	@PutMapping("accounts/{cbu}/history")
-	public void history(@PathVariable Long cbu) {
+	@PutMapping("/accounts/{cbu}/history")
+	public Collection<TransactionOperation> history(@PathVariable Long cbu) {
 		Optional<Account> accountOptional = accountService.findById(cbu);
 		if (!accountOptional.isPresent()) {
 			ResponseEntity.notFound().build();			
 		}
+		return null;
 	}
 
 	@Bean

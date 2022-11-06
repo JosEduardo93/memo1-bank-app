@@ -1,17 +1,18 @@
 package com.aninfo.model;
 
+import javax.persistence.*;
+
 public class TransactionOperation {
     
-    private String operationName;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long numOperation;
+    
+    private String operationName;
     
     private double mountOperation;
 
-    public TransactionOperation(String name, Long ope, double mount) {
-        this.operationName = name;
-        this.numOperation = ope;
-        this.mountOperation = mount;
+    public TransactionOperation() {
     }
 
     public void setNameOperation(String name) {
@@ -36,5 +37,4 @@ public class TransactionOperation {
     public double setMount() {
         return this.mountOperation;
     }
-
 }
