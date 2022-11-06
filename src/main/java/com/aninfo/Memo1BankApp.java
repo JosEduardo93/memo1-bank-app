@@ -87,9 +87,20 @@ public class Memo1BankApp {
 		return transactionService.getHistory();
 	}
 
-	@PutMapping("/accounts/{cbu}/history")
-	public Collection<TransactionOperation> getHistory(@PathVariable("cbu") Long cbu) {
+	@GetMapping("/accounts/{cbu}/history")
+	public Collection<TransactionOperation> getHistory(@RequestParam Long cbu) {
 		return transactionService.getHistory(cbu);
+	}
+
+	@GetMapping("/accounts/{cbu}/history/{id}")
+	public ResponseEntity<TransactionOperation> getTransaction(@PathVariable Long id, @RequestParam Long cbu) {
+		Optional<TransactionOperation> transactionOptional = transactionService.findById(id);
+		return ResponseEntity.of(transactionOptional);
+	}
+
+	@DeleteMapping("/accounts/history/{id}")
+	public void deleteTransaction(@PathVariable Long id) {
+		transactionService.deleteById(id);
 	}
 
 	@Bean
