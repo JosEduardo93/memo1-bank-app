@@ -34,5 +34,16 @@ public class TransactionService {
     public void deleteById(Long id) {
         transactionRepository.deleteById(id);
     }
+
+    public Optional<TransactionOperation> findTransactionOperation(Long id, Long cbu) {
+        Collection<TransactionOperation> transactionOperations = this.getHistory(cbu);
+        Optional<TransactionOperation> tOptional = null;
+        for (TransactionOperation transactionOperation : transactionOperations) {
+            if (transactionOperation.getNumOperation() == id) {
+                tOptional = Optional.of(transactionOperation);
+            }
+        }
+        return tOptional;
+    }
     
 }

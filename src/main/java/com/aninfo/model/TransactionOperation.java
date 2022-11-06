@@ -20,7 +20,7 @@ public class TransactionOperation {
 
     public TransactionOperation(String name, Long cbu, double mount, Long id) {
         this.operationName = name;
-        this.numOperation = (long)id.hashCode();
+        this.numOperation = id;
         this.cbu = cbu;
         this.mountOperation = mount;
     }

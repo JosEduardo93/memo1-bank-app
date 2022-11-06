@@ -94,7 +94,7 @@ public class Memo1BankApp {
 
 	@GetMapping("/accounts/{cbu}/history/{id}")
 	public ResponseEntity<TransactionOperation> getTransaction(@PathVariable Long id, @RequestParam Long cbu) {
-		Optional<TransactionOperation> transactionOptional = transactionService.findById(id);
+		Optional<TransactionOperation> transactionOptional = transactionService.findTransactionOperation(id, cbu);
 		return ResponseEntity.of(transactionOptional);
 	}
 
